@@ -11,7 +11,7 @@ with open(filename) as f:
 for pop_dict in population_data:
     if pop_dict['Year'] == 2016:
         country_name = pop_dict['Country Name']
-        population = pop_dict['Value']
+        population = int(pop_dict['Value'])
         print(country_name + ': ' + str(population))
     # else:
     #     print("no such data")

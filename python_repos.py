@@ -19,16 +19,21 @@ print("Repositories returned: ", len((repo_dicts)))
 
 #Examine the first repositoriy
 # repo_dict = repo_dicts[0]
-names, stars = [], []
+names, plot_dicts = [], []
 for repo_dict in repo_dicts:
     names.append(repo_dict['name'])
-    stars.append(repo_dict['stargazers_count'])
-    print("\nSelected information about first repository: ")
-    print("Name:", repo_dict['name'])
-    print('Owner: ', repo_dict['owner']['login'])
-    print('Stars:', repo_dict['stargazers_count'])
-    print('Created: ', repo_dict['created_at'])
-    print('Description:' , repo_dict['description'])
+    plot_dict = {
+        'value': repo_dict['stargazers_count'],
+        'label': str(repo_dict['description']),
+        }
+    plot_dicts.append(plot_dict)
+    # stars.append(repo_dict['stargazers_count'])
+    # print("\nSelected information about first repository: ")
+    # print("Name:", repo_dict['name'])
+    # print('Owner: ', repo_dict['owner']['login'])
+    # print('Stars:', repo_dict['stargazers_count'])
+    # print('Created: ', repo_dict['created_at'])
+    # print('Description:' , repo_dict['description'])
 # print("\nKeys: ", len(repo_dict))
 # for key in sorted(repo_dict.keys()):
 #     print(key)
@@ -51,5 +56,5 @@ my_config.width = 1000
 chart = pygal.Bar(my_config, style=my_style)
 chart.title = 'Most starred Python projects on Github'
 chart.x_labels = names
-chart.add('', stars)
-chart.render_to_file('python_repos.svg')
+chart.add('', plot_dicts)
+chart.render_to_file('python_repoos.svg')
